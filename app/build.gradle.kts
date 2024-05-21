@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id ("com.google.devtools.ksp")
 }
 
 android {
@@ -44,6 +45,13 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
+
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    //annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
+    ksp("com.github.bumptech.glide:ksp:4.16.0")
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
