@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.webkit.URLUtil
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -56,21 +57,42 @@ class ScrollingActivity : AppCompatActivity() {
                 .show()
         }
 
-        /*descargar imágenes y guardarlas en caché para ser utilizadas
-        posteriormente por una aplicación Android*/
-        Glide.with(this)
-            .load("https://www.assemblyai.com/blog/content/images/2022/07/How-Imagen-Actually-Works.png")
-            .diskCacheStrategy(DiskCacheStrategy.ALL)//manejo de la cache
-            .centerCrop()// la imagen se adapta a la imgView
-            //into ES PARA DARLE DONDE QUEREMOS QUE SE CARGE LA IMAGEN
-            .into(binding.content.imgCover)//la vista donde se va a ver la imagen
+        loadUrl()
 
         binding.content.cbEnablePass.setOnClickListener{
             //de esta forma siempre adquiere el valor contrario al que tiene
             binding.content.tilPassword.isEnabled = !binding.content.tilPassword.isEnabled
         }
+
+        //CARGA IMAGEN SEGUN LA URL DEL edUrl
+        binding.content.edUrl.onFocusChangeListener = View.OnFocusChangeListener { view, focused ->
+            var errorStr: String? = null
+            val url = binding.content.edUrl.text.toString()
+            //Extraer el texto introducido dentro del editText
+            //validacion de la url
+            if(!focused){
+                if (url.isEmpty()){
+                    errorStr = getString(R.string.card_required)
+                }else if (URLUtil.isValidUrl(url)){
+                    loadUrl(url)
+                }else {
+                    errorStr = getString(R.string.card_invalid_url)
+                }
+            }
+            binding.content.tilURL.error = errorStr
+        }
     }
 
+    private fun loadUrl(url: String = "https://www.assemblyai.com/blog/content/images/2022/07/How-Imagen-Actually-Works.png"){
+        /*descargar imágenes y guardarlas en caché para ser utilizadas
+                posteriormente por una aplicación Android*/
+        Glide.with(this)
+            .load(url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)//manejo de la cache
+            .centerCrop()// la imagen se adapta a la imgView
+            //into ES PARA DARLE DONDE QUEREMOS QUE SE CARGE LA IMAGEN
+            .into(binding.content.imgCover)//la vista donde se va a ver la imagen
+    }
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
