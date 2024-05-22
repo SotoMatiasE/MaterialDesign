@@ -66,7 +66,7 @@ class ScrollingActivity : AppCompatActivity() {
         }
 
         //CARGA IMAGEN SEGUN LA URL DEL edUrl
-        binding.content.edUrl.onFocusChangeListener = View.OnFocusChangeListener { view, focused ->
+        binding.content.edUrl.onFocusChangeListener = View.OnFocusChangeListener { _, focused ->
             var errorStr: String? = null
             val url = binding.content.edUrl.text.toString()
             //Extraer el texto introducido dentro del editText
@@ -83,7 +83,7 @@ class ScrollingActivity : AppCompatActivity() {
             binding.content.tilURL.error = errorStr
         }
 
-        binding.content.toogleButton.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        binding.content.toogleButton.addOnButtonCheckedListener { _, checkedId, _ ->
             binding.content.root.setBackgroundColor(
                 when(checkedId){
                     R.id.btnRed -> Color.RED
