@@ -105,4 +105,7 @@
     <string name="caard_to_go">Ir</string>
     <string name="card_historial">Gordo puto</string>
     <string name="card_invalid_url">Invalid URL</string>
+    <string name="card_hide_fab">Hide Fab</string>
+    <string name="card_show_fab">Show Fab</string>
+    <string name="email_soto">msoto@puenteweb.com</string>
 </resources>

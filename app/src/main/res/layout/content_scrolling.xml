@@ -158,7 +158,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
-                
+
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/cbEnablePass"
                     android:layout_width="wrap_content"
@@ -168,6 +168,36 @@
                     app:layout_constraintTop_toBottomOf="@id/tilPassword"
                     android:layout_marginTop="@dimen/common_padding_default"/>
 
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/swFab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/card_hide_fab"
+                    android:checked="true"
+                    app:layout_constraintEnd_toEndOf="@id/tvTitleAlt"
+                    app:layout_constraintTop_toTopOf="@id/cbEnablePass"
+                    app:layout_constraintTop_toBottomOf="@id/cbEnablePass"/>
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sldVol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:valueFrom="0.0"
+                    android:valueTo="10.0"
+                    android:value="5.0"
+                    android:stepSize="1.0"
+                    app:layout_constraintTop_toBottomOf="@id/cbEnablePass"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/cpEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email_soto"
+                    app:closeIconEnabled="true"
+                    android:checkable="true"
+                    app:layout_constraintStart_toStartOf="@id/tvTitleAlt"
+                    app:layout_constraintTop_toBottomOf="@id/sldVol"/>
+
                 <View
                     android:id="@+id/divider"
                     android:layout_width="0dp"
@@ -176,7 +206,7 @@
                     android:background="@color/color_divider"
                     app:layout_constraintStart_toStartOf="@id/tvTitleAlt"
                     app:layout_constraintEnd_toEndOf="@id/tvTitleAlt"
-                    app:layout_constraintTop_toBottomOf="@id/cbEnablePass"/>
+                    app:layout_constraintTop_toBottomOf="@id/cpEmail"/>
 
                 <TextView
                     android:id="@+id/tvSubtitle"

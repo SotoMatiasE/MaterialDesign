@@ -92,6 +92,29 @@ class ScrollingActivity : AppCompatActivity() {
                 }
             )
         }
+
+        binding.content.swFab.setOnCheckedChangeListener { button, isChecked ->
+            if (isChecked) {
+                button.text = getString(R.string.card_hide_fab)
+                binding.fab.show()
+            }else{
+                button.text = getString(R.string.card_show_fab)
+                binding.fab.hide()
+            }
+        }
+
+        binding.content.sldVol.addOnChangeListener { slider, value, fromUser ->
+            binding.content.tvSubtitle.text = "Vol: $value"
+        }
+
+        binding.content.cpEmail.setOnCheckedChangeListener { chip, isChecked ->
+            if (isChecked) {
+                Toast.makeText(this, "${chip.text}", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.content.cpEmail.setOnCloseIconClickListener {
+            binding.content.cpEmail.visibility = View.GONE
+        }
     }
 
     private fun loadUrl(url: String = "https://www.assemblyai.com/blog/content/images/2022/07/How-Imagen-Actually-Works.png"){
