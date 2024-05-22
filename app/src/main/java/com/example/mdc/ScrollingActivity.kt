@@ -52,9 +52,9 @@ class ScrollingActivity : AppCompatActivity() {
         binding.content.btnBuy.setOnClickListener{
             Snackbar.make(it, R.string.card_buying, Snackbar.LENGTH_LONG)
                 .setAnchorView(binding.fab) //mueve el mensaje del snackbar por enc
-                .setAction(R.string.caard_to_go,{
+                .setAction(R.string.caard_to_go) {
                     Toast.makeText(this, R.string.card_historial, Toast.LENGTH_SHORT).show()
-                })
+                }
                 .show()
         }
 
