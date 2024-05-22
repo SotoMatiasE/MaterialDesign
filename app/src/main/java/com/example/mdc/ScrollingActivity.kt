@@ -5,11 +5,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.mdc.databinding.ActivityScrollingBinding
 import com.google.android.material.bottomappbar.BottomAppBar
 
@@ -61,9 +60,18 @@ class ScrollingActivity : AppCompatActivity() {
         posteriormente por una aplicación Android*/
         Glide.with(this)
             .load("https://www.assemblyai.com/blog/content/images/2022/07/How-Imagen-Actually-Works.png")
+            .diskCacheStrategy(DiskCacheStrategy.ALL)//manejo de la cache
+            .centerCrop()// la imagen se adapta a la imgView
             //into ES PARA DARLE DONDE QUEREMOS QUE SE CARGE LA IMAGEN
-            .into(binding.content.imgCover)
+            .into(binding.content.imgCover)//la vista donde se va a ver la imagen
+
+        binding.content.cbEnablePass.setOnClickListener{
+            //de esta forma siempre adquiere el valor contrario al que tiene
+            binding.content.tilPassword.isEnabled = !binding.content.tilPassword.isEnabled
+        }
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_scrolling, menu)
