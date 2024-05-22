@@ -1,5 +1,6 @@
 package com.example.mdc
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -80,6 +81,16 @@ class ScrollingActivity : AppCompatActivity() {
                 }
             }
             binding.content.tilURL.error = errorStr
+        }
+
+        binding.content.toogleButton.addOnButtonCheckedListener { group, checkedId, isChecked ->
+            binding.content.root.setBackgroundColor(
+                when(checkedId){
+                    R.id.btnRed -> Color.RED
+                    R.id.btnBlue -> Color.BLUE
+                    else -> Color.GREEN
+                }
+            )
         }
     }
 
